@@ -1,0 +1,22 @@
+﻿apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mvp_mongo
+  labels:
+    app: mvp_mongo
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: brians-mongo
+  template:
+    metadata:
+      labels:
+        app: brians-mongo
+    spec:
+      containers:
+      - name: brians-mongo
+        image: sbxmdmregistry.azurecr.io/18.04.mongo.premera:latest
+        ports:
+        - containerPort: 27017
+          protocol: TCP

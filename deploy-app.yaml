@@ -1,0 +1,36 @@
+﻿apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mvp_application
+  labels:
+    app: mvp_application
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: brians-linux
+  template:
+    metadata:
+      labels:
+        app: brians-linux
+    spec:
+      containers:
+      - name: brians-linux
+        image: sbxmdmregistry.azurecr.io/mvp_application:20181012.1
+        ports:
+        - containerPort: 5000
+          protocol: TCP
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: mvp_application
+spec:
+  type: LoadBalancer
+  selector:
+    app: mvp_application
+  ports:
+  - name: 80-tcp
+    protocol: TCP
+    port: 80
+    targetPort: 5000
