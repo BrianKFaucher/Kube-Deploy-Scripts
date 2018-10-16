@@ -1,4 +1,4 @@
-﻿apiVersion: apps/v1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: mvp_mongo
@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: brians-mongo
-        image: sbxmdmregistry.azurecr.io/18.04.mongo.premera:latest
+        image: mongo:3.6.8
         ports:
         - containerPort: 27017
           protocol: TCP
